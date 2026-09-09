@@ -214,17 +214,46 @@ footer {
 }
 
 @media (max-width: 600px) {
+
     header {
         min-height: 90vh;
+        padding: 25px 15px;
     }
 
     section {
-        padding: 60px 18px;
+        padding: 60px 15px;
     }
 
     .hero p {
         font-size: 16px;
     }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .card {
+        padding: 20px 10px;
+    }
+
+    .card h3 {
+        font-size: 15px;
+    }
+
+    .card p {
+        font-size: 12px;
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .project {
+        padding: 22px;
+    }
+
 }
 </style>
 </head>
