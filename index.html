@@ -1,435 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Bigsharkz | AI Full-Stack Developer</title>
+<title>Bigsharkz | AI Full-Stack Developer</title>
 
-  <meta name="description"
-        content="Bigsharkz - AI Full-Stack Developer building useful technology and solving real-world problems.">
+<meta name="description"
+content="Bigsharkz - AI Full-Stack Developer building useful technology and solving real-world problems.">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #080808;
-      color: #f5f5f5;
-      line-height: 1.6;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background: #080808;
+    color: #f5f5f5;
+    line-height: 1.6;
+}
 
-    header {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px 20px;
-      background:
+header {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 20px;
+    background:
         radial-gradient(circle at top, #292000 0%, #111 35%, #080808 75%);
-    }
+}
 
-    .hero {
-      max-width: 800px;
-    }
+.hero {
+    max-width: 850px;
+}
 
-    .hero h1 {
-      font-size: 52px;
-      margin-bottom: 10px;
-      color: #ffffff;
-    }
+.badge {
+    display: inline-block;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 8px 18px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
 
-    .gold {
-      color: #d4af37;
-    }
+.hero h1 {
+    font-size: clamp(42px, 9vw, 75px);
+    margin-bottom: 15px;
+    color: #fff;
+}
 
-    .hero h2 {
-      color: #d4af37;
-      font-size: 24px;
-      margin-bottom: 18px;
-    }
+.gold {
+    color: #d4af37;
+}
 
-    .hero p {
-      color: #bbb;
-      font-size: 17px;
-      margin-bottom: 30px;
-    }
+.hero h2 {
+    color: #d4af37;
+    font-size: clamp(20px, 5vw, 30px);
+    margin-bottom: 20px;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 13px 24px;
-      margin: 6px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+.hero p {
+    color: #bbb;
+    font-size: 18px;
+    max-width: 700px;
+    margin: auto;
+}
 
-    .btn-gold {
-      background: #d4af37;
-      color: #000;
-    }
+.buttons {
+    margin-top: 30px;
+}
 
-    .btn-dark {
-      border: 1px solid #d4af37;
-      color: #d4af37;
-    }
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 13px 24px;
+    margin: 6px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.35);
+.btn-gold {
+    background: #d4af37;
+    color: #080808;
+}
+
+.btn-outline {
+    border: 1px solid #d4af37;
+    color: #d4af37;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(212,175,55,0.2);
+}
+
+section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 80px 20px;
+}
+
+.section-title {
+    text-align: center;
+    color: #d4af37;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.about {
+    text-align: center;
+    color: #bbb;
+    max-width: 800px;
+    margin: auto;
+    font-size: 17px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #151515;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #d4af37;
+}
+
+.icon {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    color: #d4af37;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.project {
+    background: #151515;
+    border-radius: 14px;
+    padding: 25px;
+    border: 1px solid #222;
+}
+
+.project h3 {
+    color: #d4af37;
+    margin-bottom: 10px;
+}
+
+.project p {
+    color: #aaa;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.project a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.goal {
+    text-align: center;
+    background: #151515;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 35px 20px;
+    color: #bbb;
+}
+
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+footer {
+    border-top: 1px solid #222;
+    text-align: center;
+    padding: 30px 20px;
+    color: #777;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    header {
+        min-height: 90vh;
     }
 
     section {
-      padding: 80px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .section-title {
-      text-align: center;
-      color: #d4af37;
-      font-size: 30px;
-      margin-bottom: 40px;
-    }
-
-    .card {
-      background: #151515;
-      border: 1px solid #292929;
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 20px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #d4af37;
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08);
-    }
-
-    .about-text {
-      text-align: center;
-      color: #bbb;
-      max-width: 750px;
-      margin: auto;
-    }
-
-    .skills {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .skill {
-      text-align: center;
-      font-size: 18px;
-    }
-
-    .skill-icon {
-      font-size: 35px;
-      margin-bottom: 10px;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .project h3 {
-      color: #d4af37;
-      margin-bottom: 10px;
-    }
-
-    .project p {
-      color: #aaa;
-    }
-
-    .goal {
-      text-align: center;
-    }
-
-    .goal p {
-      color: #bbb;
-      font-size: 18px;
-    }
-
-    .contact {
-      text-align: center;
-    }
-
-    .contact p {
-      color: #aaa;
-      margin-bottom: 20px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 35px 20px;
-      color: #777;
-      border-top: 1px solid #222;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 7px 14px;
-      border: 1px solid #444;
-      border-radius: 20px;
-      color: #d4af37;
-      margin: 5px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 800px) {
-      .hero h1 {
-        font-size: 40px;
-      }
-
-      .skills,
-      .projects {
-        grid-template-columns: 1fr;
-      }
-
-      section {
         padding: 60px 18px;
-      }
     }
-  </style>
+
+    .hero p {
+        font-size: 16px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <header>
+<header id="home">
     <div class="hero">
 
-      <div class="badge">🚀 Building The Future With Technology</div>
+        <div class="badge">
+            🚀 Building My Future in Technology
+        </div>
 
-      <h1>Bigsharkz</h1>
+        <h1>
+            Bigsharkz
+        </h1>
 
-      <h2>AI Full-Stack Developer</h2>
-
-      <p>
-        My journey from learning to building real-world technology.
-        I am developing my skills in AI, software development,
-        cybersecurity and full-stack technologies.
-      </p>
-
-      <a href="#projects" class="btn btn-gold">
-        Explore My Work
-      </a>
-
-      <a href="#contact" class="btn btn-dark">
-        Contact Me
-      </a>
-
-    </div>
-  </header>
-
-
-  <!-- ABOUT -->
-  <section id="about">
-
-    <h2 class="section-title">About Me</h2>
-
-    <div class="card about-text">
-
-      <p>
-        Welcome to my development journey.
-      </p>
-
-      <br>
-
-      <p>
-        I am learning Artificial Intelligence, software development,
-        cybersecurity and full-stack technologies.
-      </p>
-
-      <br>
-
-      <p>
-        My goal is to turn ideas into useful digital products
-        that can solve real-world problems.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- SKILLS -->
-  <section id="skills">
-
-    <h2 class="section-title">My Skills</h2>
-
-    <div class="skills">
-
-      <div class="card skill">
-        <div class="skill-icon">🤖</div>
-        <h3>Artificial Intelligence</h3>
-        <p>Learning AI systems and intelligent applications.</p>
-      </div>
-
-      <div class="card skill">
-        <div class="skill-icon">💻</div>
-        <h3>Full-Stack Development</h3>
-        <p>Building modern websites and applications.</p>
-      </div>
-
-      <div class="card skill">
-        <div class="skill-icon">🔐</div>
-        <h3>Cybersecurity</h3>
-        <p>Learning security concepts and protecting systems.</p>
-      </div>
-
-      <div class="card skill">
-        <div class="skill-icon">🐧</div>
-        <h3>Linux</h3>
-        <p>Working with Linux and developer environments.</p>
-      </div>
-
-      <div class="card skill">
-        <div class="skill-icon">🌐</div>
-        <h3>Web Development</h3>
-        <p>Creating responsive and modern web experiences.</p>
-      </div>
-
-      <div class="card skill">
-        <div class="skill-icon">⚙️</div>
-        <h3>Problem Solving</h3>
-        <p>Turning ideas into practical technology solutions.</p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PROJECTS -->
-  <section id="projects">
-
-    <h2 class="section-title">My Projects</h2>
-
-    <div class="projects">
-
-      <div class="card project">
-        <h3>🌐 Developer Portfolio</h3>
-        <p>
-          My personal developer portfolio built with HTML and CSS
-          and hosted using GitHub Pages.
-        </p>
-      </div>
-
-      <div class="card project">
-        <h3>🤖 AI Projects</h3>
-        <p>
-          A growing collection of AI experiments and applications
-          as I continue learning artificial intelligence.
-        </p>
-      </div>
-
-      <div class="card project">
-        <h3>🔐 Cybersecurity Lab</h3>
-        <p>
-          Learning cybersecurity, Linux and practical security
-          concepts through hands-on development.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- GOAL -->
-  <section id="goal">
-
-    <h2 class="section-title">My Goal</h2>
-
-    <div class="card goal">
-
-      <p>
-        To become a professional AI Full-Stack Developer
-        and build useful technology that solves real problems.
-      </p>
-
-    </div>
-
-  </section>
-
-
-<!-- PROJECTS -->
-<section id="projects">
-
-    <h2 class="section-title">My Projects</h2>
-
-    <div class="card">
-
-        <h3>🌐 Developer Portfolio</h3>
+        <h2>
+            AI <span class="gold">Full-Stack Developer</span>
+        </h2>
 
         <p>
-            My first professional portfolio website built with HTML and CSS.
-            This project represents my journey into full-stack development.
+            I'm learning to build modern websites, intelligent applications
+            and secure technology that solves real-world problems.
         </p>
 
-        <p>
-            🚀 More AI, cybersecurity and software projects coming soon.
-        </p>
+        <div class="buttons">
+            <a href="#projects" class="btn btn-gold">
+                View My Projects
+            </a>
+
+            <a href="https://github.com/bigsharkz97-boop"
+               class="btn btn-outline"
+               target="_blank">
+                GitHub
+            </a>
+        </div>
+
+    </div>
+</header>
+
+
+<section id="about">
+
+    <h2 class="section-title">
+        About Me
+    </h2>
+
+    <p class="about">
+        Welcome to my portfolio. I'm Bigsharkz, an aspiring AI Full-Stack
+        Developer focused on learning artificial intelligence, web development,
+        cybersecurity and Linux. This website documents my journey,
+        projects and progress as I build my technology career.
+    </p>
+
+</section>
+
+
+<section id="skills">
+
+    <h2 class="section-title">
+        My Skills
+    </h2>
+
+    <div class="skills-grid">
+
+        <div class="card">
+            <div class="icon">🤖</div>
+            <h3>Artificial Intelligence</h3>
+            <p>
+                Learning AI systems and intelligent applications.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">💻</div>
+            <h3>Full-Stack Development</h3>
+            <p>
+                Building modern websites and applications.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔐</div>
+            <h3>Cybersecurity</h3>
+            <p>
+                Learning security concepts and protecting systems.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🐧</div>
+            <h3>Linux</h3>
+            <p>
+                Working with Linux and developer environments.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌐</div>
+            <h3>Web Development</h3>
+            <p>
+                Creating responsive and modern web experiences.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>Problem Solving</h3>
+            <p>
+                Turning ideas into practical technology solutions.
+            </p>
+        </div>
 
     </div>
 
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
 
-  
+<section id="projects">
 
-    <h2 class="section-title">Let's Connect</h2>
+    <h2 class="section-title">
+        My Projects
+    </h2>
 
-    <div class="card contact">
+    <div class="projects">
 
-      <p>
-        Interested in technology, AI, software development
-        or cybersecurity? Let's connect.
-      </p>
+        <div class="project">
+            <h3>🌐 Developer Portfolio</h3>
+            <p>
+                My first professional portfolio website built with HTML and CSS
+                and hosted using GitHub Pages.
+            </p>
 
-      <a
-  href="mailto:bigsharkz97@gmail.com"
-  class="btn btn-dark">
-  Email Me
-      </a>
-
-      <a
-        href="mailto:your-email@example.com"
-        class="btn btn-dark">
-        Email Me
-      </a>
-
-    </div>
-
-  </section>
+            <a href="https://github.com/bigsharkz97-boop/ai-fullstack-journey"
+               target="_blank">
+                View on GitHub →
+            </a>
+        </div>
 
 
-  <!-- FOOTER -->
-  <footer>
-
-    <p>
-      © 2026 Bigsharkz — AI Full-Stack Journey
-    </p>
-
-    <p>
-      Built with HTML & CSS 🚀
-    </p>
-
-  </footer>
-
-</body>
-      </html>
+        <div class="project">
+            <h3>🤖 AI Projects</h3>
+            <p>
+                A growing collection of AI experiments and applications
+                created
