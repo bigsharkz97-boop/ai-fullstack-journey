@@ -24,6 +24,61 @@ body {
     line-height: 1.6;
 }
 
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(8,8,8,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #222;
+}
+
+.nav-inner {
+    max-width: 1100px;
+    margin: auto;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.nav-logo span {
+    color: #d4af37;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #d4af37;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid #333;
+    color: #f5f5f5;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
 header {
     min-height: 75vh;
     display: flex;
@@ -254,11 +309,61 @@ footer {
         padding: 22px;
     }
 
+    .goal {
+        padding: 25px 15px;
+        font-size: 15px;
+    }
+
+    .contact p {
+        font-size: 15px;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #0c0c0c;
+        border-bottom: 1px solid #222;
+        flex-direction: column;
+        gap: 0;
+        display: none;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 14px 20px;
+        border-bottom: 1px solid #1a1a1a;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
 }
 </style>
 </head>
 
 <body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="#home" class="nav-logo">Big<span>sharkz</span></a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#goal">Goal</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
 <header id="home">
     <div class="hero">
@@ -399,4 +504,87 @@ footer {
             <h3>🤖 AI Projects</h3>
             <p>
                 A growing collection of AI experiments and applications
-                created
+                created as I learn to build intelligent systems and
+                explore practical uses of artificial intelligence.
+            </p>
+
+            <a href="https://github.com/bigsharkz97-boop"
+               target="_blank">
+                View on GitHub →
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="goal">
+
+    <h2 class="section-title">
+        Current Goal
+    </h2>
+
+    <div class="goal">
+        <p>
+            My goal is to become a skilled AI Full-Stack Developer capable
+            of building intelligent, secure, and reliable software that
+            solves real problems. I'm currently deepening my knowledge of
+            AI systems, full-stack development, and cybersecurity through
+            hands-on projects like this one.
+        </p>
+    </div>
+
+</section>
+
+
+<section id="contact">
+
+    <h2 class="section-title">
+        Get In Touch
+    </h2>
+
+    <div class="contact">
+        <p>
+            I'm always open to connecting, collaborating, or discussing
+            new opportunities in tech.
+        </p>
+
+        <div class="buttons">
+            <a href="mailto:bigsharkz97@gmail.com" class="btn btn-gold">
+                Email Me
+            </a>
+
+            <a href="https://github.com/bigsharkz97-boop"
+               class="btn btn-outline"
+               target="_blank">
+                GitHub
+            </a>
+        </div>
+    </div>
+
+</section>
+
+
+<footer>
+    &copy; 2026 Bigsharkz. Built with HTML &amp; CSS.
+</footer>
+
+<script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            navLinks.classList.remove('open');
+        });
+    });
+</script>
+
+</body>
+    </html>
+                
