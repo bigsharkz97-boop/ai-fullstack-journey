@@ -9,6 +9,8 @@
 <meta name="description"
 content="Bigsharkz - AI Full-Stack Developer building useful technology and solving real-world problems.">
 
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%A6%88</text></svg>">
+
 <style>
 * {
     margin: 0;
@@ -268,6 +270,47 @@ footer {
     font-size: 14px;
 }
 
+.note {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+}
+
+.learning-list {
+    list-style: none;
+    max-width: 650px;
+    margin: auto;
+}
+
+.learning-list li {
+    background: #151515;
+    border: 1px solid #222;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    color: #ccc;
+    font-size: 15px;
+}
+
+.learning-list li::before {
+    content: "▸ ";
+    color: #d4af37;
+    font-weight: bold;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
 @media (max-width: 600px) {
 
     header {
@@ -401,7 +444,7 @@ footer {
 </header>
 
 
-<section id="about">
+<section id="about" class="reveal">
 
     <h2 class="section-title">
         About Me
@@ -417,7 +460,7 @@ footer {
 </section>
 
 
-<section id="skills">
+<section id="skills" class="reveal">
 
     <h2 class="section-title">
         My Skills
@@ -478,7 +521,23 @@ footer {
 </section>
 
 
-<section id="projects">
+<section id="learning" class="reveal">
+
+    <h2 class="section-title">
+        Currently Learning
+    </h2>
+
+    <ul class="learning-list">
+        <li>Building full-stack AI agent projects from scratch</li>
+        <li>Sharpening JavaScript, Python, and backend fundamentals</li>
+        <li>Practicing Linux, Git, and everyday developer workflows</li>
+        <li>Studying core cybersecurity concepts and safe coding practices</li>
+    </ul>
+
+</section>
+
+
+<section id="projects" class="reveal">
 
     <h2 class="section-title">
         My Projects
@@ -519,7 +578,7 @@ footer {
 </section>
 
 
-<section id="goal">
+<section id="goal" class="reveal">
 
     <h2 class="section-title">
         Current Goal
@@ -527,18 +586,18 @@ footer {
 
     <div class="goal">
         <p>
-            My goal is to become a skilled AI Full-Stack Developer capable
-            of building intelligent, secure, and reliable software that
-            solves real problems. I'm currently deepening my knowledge of
-            AI systems, full-stack development, and cybersecurity through
-            hands-on projects like this one.
+            Right now my main goal is to land an internship or entry-level
+            role as an AI/Full-Stack Developer. I'm actively building
+            hands-on projects, sharpening my full-stack and AI skills, and
+            growing this portfolio to show what I can do. If you're
+            hiring or know of an opportunity, I'd love to connect.
         </p>
     </div>
 
 </section>
 
 
-<section id="contact">
+<section id="contact" class="reveal">
 
     <h2 class="section-title">
         Get In Touch
@@ -566,6 +625,12 @@ footer {
 </section>
 
 
+<p class="note">
+    This site itself is my first real project — built by hand with plain
+    HTML &amp; CSS, deployed with GitHub Pages, and improved step by step
+    (including this responsive nav bar and the animations you just saw).
+</p>
+
 <footer>
     &copy; 2026 Bigsharkz. Built with HTML &amp; CSS.
 </footer>
@@ -583,8 +648,21 @@ footer {
             navLinks.classList.remove('open');
         });
     });
+
+    const revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+        revealObserver.observe(el);
+    });
 </script>
 
 </body>
     </html>
-                
+        
