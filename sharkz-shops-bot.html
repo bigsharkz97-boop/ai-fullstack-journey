@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sharkz Shops Support Bot</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e8f1ef;--ink:#10262b;--card:#fff;--accent:#0f5c6e;--on-accent:#fff;--muted:#5d747b;--line:#c9dad7;--flag:#c4441c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1c20;--ink:#e3f0ee;--card:#12292f;--accent:#5bc0d6;--on-accent:#06181c;--muted:#8fa9b0;--line:#21414a;--flag:#ff8a5c}}
+:root[data-theme="dark"]{--bg:#0b1c20;--ink:#e3f0ee;--card:#12292f;--accent:#5bc0d6;--on-accent:#06181c;--muted:#8fa9b0;--line:#21414a;--flag:#ff8a5c}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;justify-content:center}
+.app{display:flex;flex-direction:column;width:100%;max-width:520px;height:100%}
+header{padding:18px 18px 12px;border-bottom:2px solid var(--ink)}
+h1{margin:0;font-size:1.9rem;font-weight:800;letter-spacing:-.03em;line-height:1}
+header p{margin:6px 0 0;color:var(--muted);font-size:.9rem}
+#log{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:85%;padding:10px 13px;line-height:1.4;font-size:1rem;white-space:pre-wrap}
+.bot{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px 14px 14px 3px}
+.me{align-self:flex-end;background:var(--accent);color:var(--on-accent);border-radius:14px 14px 3px 14px}
+.hand{border-color:var(--flag);border-left:5px solid var(--flag)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:0 18px 10px}
+.chips button{flex:none;font:inherit;font-size:.88rem;padding:8px 12px;border:1.5px solid var(--accent);background:transparent;color:var(--accent);border-radius:99px;cursor:pointer}
+.chips button:hover{background:var(--accent);color:var(--on-accent)}
+form{display:flex;gap:8px;padding:10px 18px 16px;border-top:1px solid var(--line)}
+input{flex:1;min-width:0;font:inherit;font-size:1rem;padding:12px 14px;border:1.5px solid var(--ink);border-radius:10px;background:var(--card);color:var(--ink)}
+.send{font:inherit;font-weight:600;padding:0 18px;border:0;border-radius:10px;background:var(--ink);color:var(--bg);cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.dots{color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.m{animation:pop .18s ease-out}@keyframes pop{from{opacity:0;transform:translateY(4px)}}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Sharkz Shops</h1>
+    <p>Support bot · replies in seconds, any hour</p>
+  </header>
+  <div id="log" aria-live="polite"></div>
+  <div class="chips" id="chips"></div>
+  <form id="f">
+    <input id="q" type="text" placeholder="Ask about shipping, returns, orders..." autocomplete="off" aria-label="Your question">
+    <button class="send" type="submit">Send</button>
+  </form>
+</div>
+<script>
+var SHOP="Sharkz Shops";
+var FAQ=[
+{k:["ship","deliver","how long","arrive","postage"],a:"Delivery takes 2-4 business days in-country and 7-14 days internationally. Shipping is $4.99, and free on orders over $50."},
+{k:["return","refund","exchange","send back","money back"],a:"You can return unworn items within 14 days for a full refund. Start a return by messaging us your order number. Refunds reach your account in 3-5 days."},
+{k:["size","fit","sizing","measure"],a:"Our size chart is on every product page. If you're between sizes, we suggest going one size up. We also do free size exchanges."},
+{k:["pay","card","paypal","transfer","cash","checkout"],a:"We accept Visa, Mastercard, PayPal, and bank transfer. Payment is confirmed instantly at checkout."},
+{k:["stock","available","sold out","restock","back in"],a:"Sold-out items are usually restocked within 2 weeks. Tap 'Notify me' on the product page and we'll email you the moment it's back."},
+{k:["discount","coupon","promo","code","sale","offer"],a:"New customers get 10% off with code SHARK10. Our biggest sales are announced first to our email list."},
+{k:["hour","open","when","support","contact","reach","email","phone","whatsapp"],a:"This bot is on 24/7. Our team answers messages 9am-6pm, Monday to Saturday, at help@sharkzshops.example."},
+{k:["cancel","change","wrong address","edit order"],a:"Orders can be changed or cancelled within 2 hours of purchase. After that they go to packing. Send us your order number and we'll try our best."},
+{k:["hi","hello","hey","good morning","good evening"],a:"Hi! Welcome to "+SHOP+". I can help with shipping, returns, sizes, payment, and order tracking. What do you need?"},
+{k:["thank"],a:"You're welcome! Anything else I can help with?"}
+];
+var ORDERS={"SZ-10482":"Packed and handed to the courier yesterday. Expected delivery: in 2 days.","SZ-10391":"Delivered. It was left at your front door.","SZ-10577":"Payment received. It will be packed within 24 hours."};
+var log=document.getElementById("log"),q=document.getElementById("q");
+function add(t,c){var d=document.createElement("div");d.className="m "+c;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+function reply(text){
+  var s=text.toLowerCase();
+  var m=s.match(/sz-?\s?(\d{5})/i);
+  if(m){var id="SZ-"+m[1];return ORDERS[id]?"Order "+id+": "+ORDERS[id]:{a:"I can't find order "+id+". Please double-check the number, and I'll also pass it to our team.",h:1}}
+  if(/order|track|where is|parcel|package/.test(s))return "Sure! Send me your order number (it looks like SZ-10482) and I'll check its status. (Demo numbers: SZ-10482, SZ-10391, SZ-10577)";
+  var best=null,bs=0;
+  FAQ.forEach(function(f){var n=0;f.k.forEach(function(w){if(s.indexOf(w)>-1)n++});if(n>bs){bs=n;best=f}});
+  if(best)return best.a;
+  return {a:"I'm not sure about that one, so I've passed your question to our team. They'll reply by email within one business day. Meanwhile, I can help with shipping, returns, sizes, or payment.",h:1};
+}
+function ask(text){
+  text=text.trim();if(!text)return;
+  add(text,"me");
+  var t=add("...","bot dots");
+  setTimeout(function(){
+    var r=reply(text);t.className="m bot";
+    if(typeof r==="object"){t.textContent=r.a;t.className+=" hand"}else t.textContent=r;
+    log.scrollTop=log.scrollHeight;
+  },550);
+}
+document.getElementById("f").addEventListener("submit",function(e){e.preventDefault();ask(q.value);q.value=""});
+["Shipping time","Return policy","Track my order","Payment options","Discount code"].forEach(function(l){
+  var b=document.createElement("button");b.type="button";b.textContent=l;
+  b.onclick=function(){ask(l==="Track my order"?"Where is my order?":l)};
+  document.getElementById("chips").appendChild(b);
+});
+add("Hi! I'm the "+SHOP+" assistant. Ask me about shipping, returns, sizes, payment, or your order.","bot");
+</script>
+</body>
+</html>
